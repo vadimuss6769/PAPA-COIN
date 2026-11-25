@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PAPA COIN</title>
+<style>
+body {
+  background: #101827;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 30px 15px;
+}
+h1 { color: #ffd700; }
+.coin {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffe680, #e5a800);
+  border: 8px solid #fff0a0;
+  color: #7a4800;
+  font-size: 50px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px auto;
+  cursor: pointer;
+  box-shadow: 0 0 30px #ffcc00;
+  user-select: none;
+}
+.coin:active { transform: scale(0.94); }
+button {
+  background: #ffd700;
+  border: none;
+  border-radius: 12px;
+  padding: 15px 25px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<h1>🪙 PAPA COIN</h1>
+<p>Tap the coin and collect points!</p>
+
+<h2>Balance: <span id="balance">0</span></h2>
+
+<div class="coin" onclick="tap()">P</div>
+
+<p>⚡ Energy: <span id="energy">1000</span></p>
+
+<script>
+let balance = Number(localStorage.getItem("papaBalance")) || 0;
+let energy = 1000;
+
+function update() {
+  document.getElementById("balance").textContent = balance;
+  document.getElementById("energy").textContent = energy;
+}
+
+function tap() {
+  if (energy <= 0) return;
+  balance++;
+  energy--;
+  localStorage.setItem("papaBalance", balance);
+  update();
+}
+
+setInterval(() => {
+  if (energy < 1000) {
+    energy = Math.min(1000, energy + 5);
+    update();
+  }
+}, 1000);
+
+update();
+</script>
+
+</body>
+</html>
