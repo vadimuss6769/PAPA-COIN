@@ -72,12 +72,11 @@ function tap() {
 }
 
 setInterval(() => {
-  if (energy < 1000) {
-    energy = Math.min(1000, energy + 5);
-    update();
-  }
-}, 1000);
-
+    if (energy < 1000) {
+        energy = Math.min(1000, energy + 1);
+        update();
+    }
+}, 10000);
 update();
 </script>
 
